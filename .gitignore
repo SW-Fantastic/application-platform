@@ -1,3 +1,4 @@
 /target/
 /native/windows/Platform/.vs/
 /native/windows/Platform/x64/
+/.idea/
