@@ -17,7 +17,7 @@ import java.util.List;
 public class WindowsBinaryUtilTests {
 
     public static void main(String[] args) throws Exception {
-        System.load(new File("platforms/Platform.dll").getAbsolutePath());
+        System.load(new File("platforms/Platform-x64.dll").getAbsolutePath());
         /*File target = new File("platforms/screen-capture-recorder-x64.dll");
         boolean isSuccess = WindowsBinaryUtils.dllRegister(target);
         System.err.println("com is register " + (isSuccess ? "success" : "failed"));

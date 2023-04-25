@@ -67,6 +67,10 @@ public class MemoryReference {
         }
     }
 
+    public ByteBuffer getRef() {
+        return data;
+    }
+
     public void free() {
         if (data != null) {
             Unsafe.free(data);
