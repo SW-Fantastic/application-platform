@@ -29,24 +29,22 @@ public class NativePlatform {
         File libFile = null;
         String osName = System.getProperty("os.name").trim().toLowerCase();
 
-        if (osName.contains("mac")) {
-            String url = NativePlatform.class.getProtectionDomain().getCodeSource().getLocation().getFile();
-            String base = URLDecoder.decode(url, StandardCharsets.UTF_8);
-            if (base.indexOf(".app") > 0) {
-                // 位于MacOS的Bundle（.app软件包）内部，特殊处理以获取正确的路径。
-                String location = base.substring(0,base.indexOf(".app")) + ".app/Contents/";
-                Path target = new File(location).toPath();
-                libFile = target.resolve(platformFolder.getName()).toFile();
-            }
-        }
-
         String resourceName = null;
         if (osName.contains("windows")) {
             resourceName = "/libplatformnatives/" + "Platform-" + osArch + ".dll";
             libFile = new File(platformFolder.getAbsolutePath() + File.separator + "Platform.dll");
         } else if (osName.contains("macos")) {
             resourceName = "/libplatformnatives/" + "libPlatform-" + osArch + ".dylib";
-            libFile = new File(platformFolder.getAbsolutePath() + File.separator + "libPlatform.dylib");
+            String url = NativePlatform.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+            String base = URLDecoder.decode(url, StandardCharsets.UTF_8);
+            if (base.indexOf(".app") > 0) {
+                // 位于MacOS的Bundle（.app软件包）内部，特殊处理以获取正确的路径。
+                String location = base.substring(0,base.indexOf(".app")) + ".app/Contents/";
+                Path target = new File(location).toPath();
+                libFile = target.resolve(platformFolder.getName() + File.separator + "libPlatform.dylib").toFile();
+            } else {
+                libFile = new File(platformFolder.getAbsolutePath() + File.separator + "libPlatform.dylib");
+            }
         } else if (osName.contains("linux")) {
             resourceName = "/libplatformnatives/" + "libPlatform-" + osArch + ".so";
             libFile = new File(platformFolder.getAbsolutePath() + File.separator + "libPlatform.so");
