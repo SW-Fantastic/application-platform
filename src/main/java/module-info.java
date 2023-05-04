@@ -1,6 +1,7 @@
 module swdc.platform {
 
-    requires dom4j;
+    requires org.dom4j;
+    requires java.xml;
 
     exports org.swdc.platforms;
     exports org.swdc.platforms.memory;

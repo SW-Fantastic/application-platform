@@ -75,3 +75,29 @@ JNIEXPORT void JNICALL Java_org_swdc_platforms_Unsafe_free
     void* ptr = env->GetDirectBufferAddress(bytebuffer);
     free(ptr);
 }
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    sizeOf
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_platforms_Unsafe_sizeOf
+(JNIEnv* env, jclass clazz, jint type) {
+
+    switch (type)
+    {
+    case 0:
+        return sizeof(int);
+    case 1:
+        return sizeof(short);
+    case 2:
+        return sizeof(long);
+    case 3:
+        return sizeof(char);
+    case 4:
+        return sizeof(intptr_t);
+    default:
+        return 0;
+    }
+
+}

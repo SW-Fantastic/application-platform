@@ -39,6 +39,13 @@ JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_memcpy
 JNIEXPORT void JNICALL Java_org_swdc_platforms_Unsafe_free
   (JNIEnv *, jclass, jobject);
 
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    sizeOf
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_org_swdc_platforms_Unsafe_sizeOf
+(JNIEnv*, jclass, jint);
 #ifdef __cplusplus
 }
 #endif

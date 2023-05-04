@@ -7,3 +7,4 @@ Java_org_swdc_platforms_Unsafe_malloc
 Java_org_swdc_platforms_Unsafe_relloc
 Java_org_swdc_platforms_Unsafe_memcpy
 Java_org_swdc_platforms_Unsafe_free
+Java_org_swdc_platforms_Unsafe_sizeOf

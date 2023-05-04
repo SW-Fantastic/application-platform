@@ -45,4 +45,15 @@ public class Unsafe {
     public static native void free(ByteBuffer byteBuffer);
 
 
+    /**
+     * SizeOf
+     * @param type 类型
+     * @see NTypes
+     * @return
+     */
+    private static native int sizeOf(int type);
+
+    public static int sizeOf(NTypes types) {
+        return sizeOf(types.getType());
+    }
 }
