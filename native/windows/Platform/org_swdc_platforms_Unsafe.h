@@ -28,8 +28,47 @@ JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_relloc
  * Method:    memcpy
  * Signature: (Ljava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
  */
-JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_memcpy
-  (JNIEnv *, jclass, jobject);
+JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_memcpy__Ljava_nio_ByteBuffer_2
+(JNIEnv*, jclass, jobject);
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    memcpy
+ * Signature: (Ljava/nio/ByteBuffer;II)Ljava/nio/ByteBuffer;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_memcpy__Ljava_nio_ByteBuffer_2II
+(JNIEnv*, jclass, jobject, jint, jint);
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    memcpy
+ * Signature: (Ljava/nio/ByteBuffer;ILjava/nio/ByteBuffer;II)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_platforms_Unsafe_memcpy__Ljava_nio_ByteBuffer_2ILjava_nio_ByteBuffer_2II
+(JNIEnv*, jclass, jobject, jint, jobject, jint, jint);
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    mmap
+ * Signature: (Ljava/lang/String;IIJ)Ljava/nio/ByteBuffer;
+ */
+JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_mmap
+(JNIEnv*, jclass, jstring, jint, jint, jlong);
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    msync
+ * Signature: (Ljava/nio/ByteBuffer;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_platforms_Unsafe_msync
+(JNIEnv*, jclass, jobject);
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    munmap
+ * Signature: (Ljava/nio/ByteBuffer;)Z
+ */
+JNIEXPORT jboolean JNICALL Java_org_swdc_platforms_Unsafe_munmap
+(JNIEnv*, jclass, jobject);
 
 /*
  * Class:     org_swdc_platforms_Unsafe
@@ -46,6 +85,15 @@ JNIEXPORT void JNICALL Java_org_swdc_platforms_Unsafe_free
  */
 JNIEXPORT jint JNICALL Java_org_swdc_platforms_Unsafe_sizeOf
 (JNIEnv*, jclass, jint);
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    getMemoryAlignment
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_platforms_Unsafe_getMemoryAlignment
+(JNIEnv*, jclass);
+
 #ifdef __cplusplus
 }
 #endif

@@ -33,7 +33,7 @@ public class NativePlatform {
         if (osName.contains("windows")) {
             resourceName = "/libplatformnatives/" + "Platform-" + osArch + ".dll";
             libFile = new File(platformFolder.getAbsolutePath() + File.separator + "Platform.dll");
-        } else if (osName.contains("macos")) {
+        } else if (osName.contains("mac")) {
             resourceName = "/libplatformnatives/" + "libPlatform-" + osArch + ".dylib";
             String url = NativePlatform.class.getProtectionDomain().getCodeSource().getLocation().getFile();
             String base = URLDecoder.decode(url, StandardCharsets.UTF_8);
