@@ -151,8 +151,10 @@ JNIEXPORT jobject JNICALL Java_org_swdc_platforms_Unsafe_mmap
         break;
     }
     int pageSize = sysconf(_SC_PAGE_SIZE);
-    if(length % pageSize > 0) {
-      length = length + (pageSize - (length % pageSize));
+    if(offset % pageSize > 0) {
+      int offsetVal = (offset % pageSize);
+      offset = offset - offsetVal;
+      length = length + offsetVal;
     }
 
     void* target = mmap(NULL,length,flags, MAP_SHARED,fd,offset);
@@ -238,3 +240,13 @@ JNIEXPORT jint JNICALL Java_org_swdc_platforms_Unsafe_sizeOf
     }
 
 }
+
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    getMemoryAlignment
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_platforms_Unsafe_getMemoryAlignment
+  (JNIEnv *, jclass) {
+    return sysconf(_SC_PAGE_SIZE);
+  }

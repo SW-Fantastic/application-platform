@@ -89,6 +89,14 @@ JNIEXPORT void JNICALL Java_org_swdc_platforms_Unsafe_free
 JNIEXPORT jint JNICALL Java_org_swdc_platforms_Unsafe_sizeOf
   (JNIEnv *, jclass, jint);
 
+/*
+ * Class:     org_swdc_platforms_Unsafe
+ * Method:    getMemoryAlignment
+ * Signature: ()J
+ */
+JNIEXPORT jlong JNICALL Java_org_swdc_platforms_Unsafe_getMemoryAlignment
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

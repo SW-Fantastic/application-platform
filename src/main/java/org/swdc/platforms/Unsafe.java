@@ -171,13 +171,9 @@ public class Unsafe {
      * 获取系统的内存分配粒度。
      * 内存-文件映射将会以一定的方式对齐到这个数值。
      *
-     * 对于Windows，文件-内存映射中文件的Offset将会对齐到此值，如果提供的Offset未对齐，
-     * 将会自动对齐。
+     * 文件-内存映射中文件的Offset将会对齐到此值，如果提供的Offset未对齐，
+     * 将会自动对齐到此值，并且拓展它的Length。
      *
-     * 对于Unix-like，文件-内存映射中的Length将会对齐到此值，提供的Length如果没有对齐，
-     * 则会自动对齐。
-     *
-     *  FIXME NOT Implement on MacOS
      * @return
      */
     public static native long getMemoryAlignment();
