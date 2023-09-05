@@ -15,7 +15,11 @@ public class NativePlatform {
             "amd64","x64","x86_64"
     );
 
-    public static void initializePlatform(File platformFolder) {
+    public static void initializePlatform(File assetFolder) {
+        File platformFolder = new File(assetFolder.getAbsolutePath() + File.separator
+                + "platform" + File.separator
+                + "memories"
+        );
         if (!platformFolder.exists()) {
             if(!platformFolder.mkdirs()) {
                 throw new RuntimeException("can not create native library folder: " + platformFolder.getAbsolutePath());
@@ -37,11 +41,15 @@ public class NativePlatform {
             resourceName = "/libplatformnatives/" + "libPlatform-" + osArch + ".dylib";
             String url = NativePlatform.class.getProtectionDomain().getCodeSource().getLocation().getFile();
             String base = URLDecoder.decode(url, StandardCharsets.UTF_8);
-            if (base.indexOf(".app") > 0) {
-                // 位于MacOS的Bundle（.app软件包）内部，特殊处理以获取正确的路径。
-                String location = base.substring(0,base.indexOf(".app")) + ".app/Contents/";
-                Path target = new File(location).toPath();
-                libFile = target.resolve(platformFolder.getName() + File.separator + "libPlatform.dylib").toFile();
+            if (!platformFolder.isAbsolute()) {
+                if (base.indexOf(".app") > 0) {
+                    // 位于MacOS的Bundle（.app软件包）内部，特殊处理以获取正确的路径。
+                    String location = base.substring(0,base.indexOf(".app")) + ".app/Contents/";
+                    Path target = new File(location).toPath();
+                    libFile = target.resolve(platformFolder.getName() + File.separator + "libPlatform.dylib").toFile();
+                } else {
+                    libFile = new File(platformFolder.getAbsolutePath() + File.separator + "libPlatform.dylib");
+                }
             } else {
                 libFile = new File(platformFolder.getAbsolutePath() + File.separator + "libPlatform.dylib");
             }
